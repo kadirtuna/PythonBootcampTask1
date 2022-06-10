@@ -16,31 +16,36 @@ bitkiler = [lale, menekşe, eğreltiOtu, suYosunu, liken]
 
 
 while 1:
-    print("\n\n---------------MENU------------------\n"
+    print("\n\n----------------------------MENU------------------------------\n"
           "1 - Hayvanlar listesinin içindeki elemanların bilgilerini yazdır.\n"
           "2 - Bitkiler listesinin içindeki elemanların bilgilerini yazdır.\n"
           "3 - Hayvanlar listesine yeni eleman ekle.\n"
-          "4 - Bitkiler listesine yeni eleman ekle.\n")
-    operation = input("Yapmak istediğiniz işlemin numarasını yazınız (Çıkış için \"q\" yazın) : ")
+          "4 - Bitkiler listesine yeni eleman ekle.\n"
+          "--------------------------------------------------------------")
+    operation = input("İŞLEM : Yapmak istediğiniz işlemin numarasını yazınız (Çıkış için \"q\" yazın) : ")
 
     if operation == "1":
-        [print(f"{index + 1}. Canlı {hayvan.bilgileriniYazdır()}")  for index, hayvan in enumerate(hayvanlar)]
+        [print(f"{index + 1}. Kayıtlı Hayvan {hayvan.bilgileriniYazdır()}")  for index, hayvan in enumerate(hayvanlar)]
 
     elif operation == "2":
-        [print(f"{index + 1}. Canlı {bitki.bilgileriniYazdır()}") for index, bitki in enumerate(bitkiler)]
+        [print(f"{index + 1}. Kayıtlı Bitki {bitki.bilgileriniYazdır()}") for index, bitki in enumerate(bitkiler)]
 
     elif operation == "3":
         print("1 - Omurgalı hayvan.\n"
               "2 - Omurgasız hayvan.\n")
         hayvanTürü = input("İstediğiniz seçeneğin numarasını giriniz : ")
+        tür = input("Türünü giriniz : ")
+        beslenme = input("Beslenme çeşidini giriniz! (Etçil, Otçul, Hepçil) : ")
+        solunum = input("Solunum çeşidini giriniz! (Deri, Solungaç, Trake, Akciğer) : ")
+        ölüm = input("Ortalama ömrünü giriniz : ")
         if hayvanTürü == "1":
-            tür = input("Türünü giriniz : ")
-            beslenme = input("Beslenme çeşidini giriniz! (Etçil, Otçul, Hepçil) : ")
-            solunum = input("Solunum çeşidini giriniz! (Deri, Solungaç, Trake, Akciğer) : ")
-            ölüm = input("Ortalama ömrünü giriniz : ")
             obj1 = pyOrg.Omurgalılar(tür, beslenme, solunum, ölüm)
-            hayvanlar.append(obj1)
             print("Omurgalı Hayvan başarıyla hayvanlar listesine eklendi!")
+        elif hayvanTürü == "2":
+            üreme = input("Üreme şeklini giriniz! (Bölünerek, Eşeyli, Eşeysiz gibi): ")
+            obj1 = pyOrg.Omurgasızlar(tür, beslenme, solunum, üreme, ölüm)
+            print("Omurgasız Hayvan başarıyla hayvanlar listesine eklendi!")
+        hayvanlar.append(obj1)
     elif operation == "3":
         print("")
     elif operation == "q":
